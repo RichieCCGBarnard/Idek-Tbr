@@ -7,6 +7,7 @@ use Libraries.Game.Graphics.DirectionalLight
 use Libraries.Game.Graphics.AmbientLight
 use Libraries.Game.Graphics.PointLight
 use Libraries.Game.Graphics.Camera
+use Libraries.Compute.Vector3
 //test
 
 class Main is Game
@@ -47,6 +48,7 @@ class Main is Game
     Model tlbed
     Model tbbed
     Camera camera = undefined
+
     action Main 
         StartGame()
 
@@ -54,6 +56,14 @@ class Main is Game
 
    
     action CreateGame
+camera = GetCamera3D()
+Vector3 point
+Vector3 axis
+point:Set(0,0,0)
+axis:Set(0,1,0)
+camera:RotateAround(point,axis,90)
+camera:LookAt(0,0,0)
+camera:SetZoom(1.4)
 
 dl:SetDirection(GetCamera3D():GetDirection())
     dl:SetColor(0.1,0.1,0.1,1)
@@ -65,13 +75,14 @@ al:SetColor(0.5,0.5,0.5,1)
 color3:SetColor(0.6,0.06,0.1,1)
 
 car:LoadBox(2,0.2,3,color3)
-    car:SetPosition(1.3,1.3,-1.5)
+    car:SetPosition(1.3,1.2,-1.5)
 Add(car)
 
 wheel:LoadCylinder(0.4,0.1,0.4,color:White())
     wheel:Rotate(0,0,1,90)
-wheel:SetPosition(-1,0.2,-2.2)
+wheel:SetPosition(-1,-1,-1.5)
     car:Add(wheel)
+
 
 
 
@@ -82,11 +93,11 @@ road:LoadBox(5,4,90,color:Black())
     road:SetPosition(0,-2,1)
 Add(road)
 
-    line:LoadBox(0.07,0.5,80,color:Yellow())
+    line:LoadBox(0.07,0.1,80,color:Yellow())
 line:SetPosition(-0.1,0.1,1)
     Add(line)
 
-    line2:LoadBox(0.07,0.5,80,color:Yellow())
+    line2:LoadBox(0.07,0.1,80,color:Yellow())
 line2:SetPosition(0.1,0.1,1)
     Add(line2)
 
@@ -121,22 +132,10 @@ Add(bwall)
 twall:LoadBox(60,0.5,160,color)
     twall:SetPosition(0,5,1)
 Add(twall)
-        camera=GetCamera3D()
-        camera:LookAt(50,-20,25)
+      
     end
 
-             number x = 50
-    action Update(number seconds)
-         if im:IsKeyPressed(button:RIGHT)
-
-                x = x + 25 * seconds
-            camera:SetYawPitchRoll(x,-20,25)
-        
-        
-        elseif im:IsKeyPressed(button:LEFT)
-            x = x - 25 * seconds
-            camera:SetYawPitchRoll(x,-20,25)
-
+             
+    action Update(number seconds)  
     end
-end
 end
