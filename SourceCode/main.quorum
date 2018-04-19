@@ -1,0 +1,142 @@
+use Libraries.Game.Game
+use Libraries.Game.Graphics.Color
+use Libraries.Game.Graphics.Model
+use Libraries.Interface.Events.KeyboardEvent
+use Libraries.Game.InputMonitor
+use Libraries.Game.Graphics.DirectionalLight
+use Libraries.Game.Graphics.AmbientLight
+use Libraries.Game.Graphics.PointLight
+use Libraries.Game.Graphics.Camera
+
+
+class Main is Game
+    KeyboardEvent button
+    InputMonitor im
+    DirectionalLight dl
+    AmbientLight al
+    PointLight sun
+    Color color
+    Color color2 
+    Color color3
+    Model road
+    Model lwall
+    Model rwall
+    Model twall
+    Model bwall
+    Model sidewalk
+    Model sidewalk2
+    Model sidewalk3
+    Model sidewalk4
+    Model sidewalk5
+    Model sidewalk6
+    Model tunnel
+    Model car
+    Model house1
+    Model window
+    Model door
+    Model roof
+    Model line
+    Model line2
+    Model ground  
+    Model wheel
+    Model wheel2
+    Model wheel3
+    Model wheel4
+    Model tcab
+    Model trbed
+    Model tlbed
+    Model tbbed
+    Camera camera = undefined
+    action Main 
+        StartGame()
+
+    end
+
+   
+    action CreateGame
+
+dl:SetDirection(GetCamera3D():GetDirection())
+    dl:SetColor(0.1,0.1,0.1,1)
+    Add(dl)
+
+al:SetColor(0.5,0.5,0.5,1)
+    SetAmbientLight(al)
+
+color3:SetColor(0.6,0.06,0.1,1)
+
+car:LoadBox(2,0.2,3,color3)
+    car:SetPosition(1.3,1.3,-1.5)
+Add(car)
+
+wheel:LoadCylinder(0.4,0.1,0.4,color:White())
+    wheel:Rotate(0,0,1,90)
+wheel:SetPosition(-1,0.2,-2.2)
+    car:Add(wheel)
+
+
+
+
+
+
+road:LoadBox(5,4,90,color:Black())
+    road:SetPosition(0,-2,1)
+Add(road)
+
+    line:LoadBox(0.07,0.5,80,color:Yellow())
+line:SetPosition(-0.1,0.1,1)
+    Add(line)
+
+    line2:LoadBox(0.07,0.5,80,color:Yellow())
+line2:SetPosition(0.1,0.1,1)
+    Add(line2)
+
+ground:LoadBox(50,10,200,color:Green())
+    ground:SetPosition(0,-5.1,0)
+Add(ground)
+
+sidewalk:LoadBox(2,0.5,90,color:Gray())
+   sidewalk:SetPosition(-3.8,-0.3,1)
+Add(sidewalk)
+
+sidewalk2:LoadBox(2,0.5,90,color:Gray())
+    sidewalk2:SetPosition(3.8,-0.3,1)
+Add(sidewalk2)
+
+color:SetColor(0,0.6,1,1)
+
+lwall:LoadBox(0.5,11,160,color)
+    lwall:SetPosition(30,0,1)
+Add(lwall)
+
+color2:SetColor(0,0.5,1,1)
+
+rwall:LoadBox(0.5,11,160,color)
+    rwall:SetPosition(-30,0,1)
+Add(rwall)
+
+bwall:LoadBox(60,11,1,color)
+    bwall:SetPosition(0,0,75)
+Add(bwall)
+
+twall:LoadBox(60,0.5,160,color)
+    twall:SetPosition(0,5,1)
+Add(twall)
+        camera=GetCamera3D()
+        camera:LookAt(50,-20,25)
+    end
+
+             number x = 50
+    action Update(number seconds)
+         if im:IsKeyPressed(button:RIGHT)
+
+                x = x + 25 * seconds
+            camera:SetYawPitchRoll(x,-20,25)
+        
+        
+        elseif im:IsKeyPressed(button:LEFT)
+            x = x - 25 * seconds
+            camera:SetYawPitchRoll(x,-20,25)
+
+    end
+end
+end
