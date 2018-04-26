@@ -84,12 +84,12 @@ Add(car)
 
 wheel:LoadCylinder(0.6,0.2,0.6,"tire.png")
     wheel:Rotate(0,0,1,90)
-wheel:SetPosition(0.71,-0.6,1.4)
+wheel:SetPosition(0.71,-0.4,1.4)
     car:Add(wheel)
 //0.3,0.2,-2.8
 wheel2:LoadCylinder(0.6,0.2,0.6,"tire.png")
     wheel2:Rotate(0,0,1,90)
-wheel2:SetPosition(-0.71,-0.6,-1.4)
+wheel2:SetPosition(-0.71,-0.4,-1.4)
     car:Add(wheel2)
 
 
