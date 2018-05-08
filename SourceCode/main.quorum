@@ -48,6 +48,7 @@ class Main is Game
     Model trbed
     Model tlbed
     Model tbbed
+    Model thood
     Camera camera = undefined
 
     action Main 
@@ -62,10 +63,10 @@ Vector3 point
 Vector3 axis
 point:Set(0,0,0)
 axis:Set(0,1,0)
-camera:RotateAround(point,axis,90)
+camera:RotateAround(point,axis,0)
 camera:LookAt(0,0,0)
 camera:SetZoom(1)
-camera:Move(0,-1.8,0)
+camera:Move(0,-2,-1)
 
 dl:SetDirection(GetCamera3D():GetDirection())
     dl:SetColor(0.1,0.1,0.1,1)
@@ -78,23 +79,29 @@ color3:SetColor(0.6,0.06,0.1,1)
 
 color4:SetColor(0.1,0.1,0.1,1)
 
-car:LoadBox(1.7,0.2,3.5,color3)
+car:LoadBox(1.7,0.2,2.5,color:Gray())
     car:SetPosition(1,0.7,-1.5)
 Add(car)
 
 wheel:LoadCylinder(0.6,0.2,0.6,"tire.png")
     wheel:Rotate(0,0,1,90)
-wheel:SetPosition(0.71,-0.4,1.4)
+wheel:SetPosition(0.71,-0.4,1)
     car:Add(wheel)
 //0.3,0.2,-2.8
 wheel2:LoadCylinder(0.6,0.2,0.6,"tire.png")
     wheel2:Rotate(0,0,1,90)
-wheel2:SetPosition(-0.71,-0.4,-1.4)
+wheel2:SetPosition(0.71,-0.4,-1)
     car:Add(wheel2)
 
+wheel3:LoadCylinder(0.6,0.2,0.6,"tire.png")
+    wheel3:Rotate(0,0,1,90)
+wheel3:SetPosition(-0.71,-0.4,-1)
+    car:Add(wheel3)
 
-
-
+wheel4:LoadCylinder(0.6,0.2,0.6,"tire.png")
+    wheel4:Rotate(0,0,1,90)
+wheel4:SetPosition(-0.71,-0.4,1)
+    car:Add(wheel4)
 
 
 road:LoadBox(5,4,90,color:White())
